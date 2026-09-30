@@ -17,7 +17,7 @@ import StaffDashboard from "./pages/staff/StaffDashboard";
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/campus-find">
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
