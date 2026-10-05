@@ -36,10 +36,18 @@ function LoginPage() {
 
                 {/* Sign In Button & Register */}
                 <div className="mt-4" >
-                    <button type="button" className="btn w-100 mb-3" style={{
+                    {/* <button type="button" className="btn w-100 mb-3" style={{
                         backgroundColor: "#1B2A4A",
                         color: "#FFFFFF"
-                    }}>Sign In</button>
+                    }}>Sign In</button> */}
+                    <button
+                        type="button"
+                        className="btn w-100 mb-3"
+                        style={{ backgroundColor: "#1B2A4A", color: "#FFFFFF" }}
+                        onClick={() => window.location.href = '/student/dashboard'}
+                    >
+                        Sign In
+                    </button>
 
                     {/* Register */}
                     <p className="text-center text-muted mb-0" style={{ fontSize: "13px", }}>Don't have an account?  <Link to="/register" className="fw-semibold" style={{ textDecoration: "none" }}>Register Here</Link></p>
