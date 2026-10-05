@@ -63,9 +63,9 @@ function LoginPage() {
                     </Link>
 
                     {/* Register */}
-                    {/* <p className="text-center text-muted mb-0" style={{ fontSize: "13px" }}>
+                    <p className="text-center text-muted mb-0" style={{ fontSize: "13px" }}>
                         Don't have an account? <Link to="/register" className="fw-semibold" style={{ color: "#1B2A4A", textDecoration: "none" }}>Register Here</Link>
-                    </p> */}
+                    </p>
                 </div>
             </div>
         </div>
