@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function MyReports() {
+    // State to track current step (1, 2, or 3)
+    const [currentStep, setCurrentStep] = useState(1);
+    // State to toggle the success modal popup
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    // State to track whether the item is Lost or Found
+    const [reportType, setReportType] = useState('found');
+
     return (
-        <div className="flex-grow-1 bg-light min-vh-100 p-4" style={{ overflowY: "auto" }}>
+        <div className="flex-grow-1 bg-light min-vh-100 p-4 position-relative" style={{ overflowY: "auto" }}>
             
             {/* TOP NAVBAR HEADER */}
             <div className="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom bg-white px-4 py-3 rounded shadow-sm">
-                <h4 className="fw-bold mb-0" style={{ color: "#1B2A4A" }}>My Reports</h4>
+                <h4 className="fw-bold mb-0" style={{ color: "#1B2A4A" }}>Logging Portal</h4>
                 
                 {/* Search Bar & User Controls */}
                 <div className="d-flex align-items-center gap-4">
@@ -46,205 +53,312 @@ function MyReports() {
                 </div>
             </div>
 
-            {/* FILTER & CONTROL BAR */}
-            <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-                {/* Type Filter Pills */}
-                <div className="d-flex align-items-center gap-2">
-                    <button className="btn btn-dark text-white px-3 py-1.5 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ fontSize: "13px", borderRadius: "20px", backgroundColor: "#1B2A4A" }}>
-                        All Reports <span className="badge bg-secondary rounded-pill" style={{ fontSize: "10px" }}>5</span>
-                    </button>
-                    <button className="btn btn-light text-muted border px-3 py-1.5 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ fontSize: "13px", borderRadius: "20px" }}>
-                        Lost Reports <span className="badge bg-light text-muted border rounded-pill" style={{ fontSize: "10px" }}>3</span>
-                    </button>
-                    <button className="btn btn-light text-muted border px-3 py-1.5 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ fontSize: "13px", borderRadius: "20px" }}>
-                        Found Reports <span className="badge bg-light text-muted border rounded-pill" style={{ fontSize: "10px" }}>2</span>
-                    </button>
-                </div>
-
-                {/* Dropdown Filters */}
-                <div className="d-flex align-items-center gap-3">
-                    <div className="d-flex align-items-center gap-2 bg-white border px-3 py-1.5 rounded shadow-sm text-dark" style={{ fontSize: "13px", cursor: "pointer" }}>
-                        <span className="text-muted">Status:</span>
-                        <span className="fw-semibold">All Statuses</span>
-                        <i className="bi bi-chevron-down text-muted" style={{ fontSize: "10px" }}></i>
-                    </div>
-                    <div className="d-flex align-items-center gap-2 bg-white border px-3 py-1.5 rounded shadow-sm text-dark" style={{ fontSize: "13px", cursor: "pointer" }}>
-                        <span className="text-muted">Date:</span>
-                        <span className="fw-semibold">Last 30 Days</span>
-                        <i className="bi bi-chevron-down text-muted" style={{ fontSize: "10px" }}></i>
-                    </div>
-                    <div className="d-flex align-items-center gap-2 bg-white border px-3 py-1.5 rounded shadow-sm text-dark" style={{ fontSize: "13px", cursor: "pointer" }}>
-                        <span className="text-muted">Sort By:</span>
-                        <span className="fw-semibold">Newest First</span>
-                        <i className="bi bi-chevron-down text-muted" style={{ fontSize: "10px" }}></i>
-                    </div>
-                </div>
-            </div>
-
-            {/* REPORTS TABLE CARD */}
-            <div className="card border shadow-sm bg-white mb-4" style={{ borderRadius: "8px", overflow: "hidden" }}>
-                <div className="table-responsive">
-                    <table className="table align-middle mb-0" style={{ fontSize: "13px" }}>
-                        <thead className="bg-light text-uppercase text-muted" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>
-                            <tr>
-                                <th className="py-3 px-4">Item Details</th>
-                                <th className="py-3">Case Number</th>
-                                <th className="py-3">Type</th>
-                                <th className="py-3">Category</th>
-                                <th className="py-3">Date Reported</th>
-                                <th className="py-3">Status</th>
-                                <th className="py-3 text-end px-4">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* Row 1 */}
-                            <tr className="border-bottom">
-                                <td className="py-3 px-4">
-                                    <div className="d-flex align-items-center gap-3">
-                                        <div className="bg-secondary rounded text-white d-flex align-items-center justify-content-center fw-bold" style={{ width: "38px", height: "38px", fontSize: "11px", background: "url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=100&q=80') center/cover no-repeat" }}></div>
-                                        <div className="fw-bold text-dark">iPhone 15 Pro Max</div>
-                                    </div>
-                                </td>
-                                <td className="text-muted fw-medium">LNF-2026-000124</td>
-                                <td><span className="badge bg-danger bg-opacity-10 text-danger px-2 py-1 fw-bold" style={{ fontSize: "10px" }}>LOST</span></td>
-                                <td className="text-dark">Electronics</td>
-                                <td className="text-muted">Sep 15, 2026</td>
-                                <td>
-                                    <span className="badge bg-purple text-purple bg-opacity-10 px-2.5 py-1 rounded-pill" style={{ fontSize: "11px", backgroundColor: "#f3e8ff", color: "#7e22ce" }}>
-                                        Searching
-                                    </span>
-                                </td>
-                                <td className="text-end px-4">
-                                    <div className="d-flex align-items-center justify-content-end gap-2">
-                                        <button className="btn btn-sm text-white px-3 py-1 fw-semibold shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "12px", borderRadius: "4px" }}>View</button>
-                                        <button className="btn btn-sm btn-light border text-dark px-3 py-1 fw-semibold shadow-none" style={{ fontSize: "12px", borderRadius: "4px" }}>Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            {/* Row 2 */}
-                            <tr className="border-bottom">
-                                <td className="py-3 px-4">
-                                    <div className="d-flex align-items-center gap-3">
-                                        <div className="bg-secondary rounded text-white d-flex align-items-center justify-content-center" style={{ width: "38px", height: "38px", background: "url('https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=100&q=80') center/cover no-repeat" }}></div>
-                                        <div className="fw-bold text-dark">Water Bottle (HydroFlask)</div>
-                                    </div>
-                                </td>
-                                <td className="text-muted fw-medium">LNF-2026-000119</td>
-                                <td><span className="badge bg-success bg-opacity-10 text-success px-2 py-1 fw-bold" style={{ fontSize: "10px" }}>FOUND</span></td>
-                                <td className="text-dark">Accessories</td>
-                                <td className="text-muted">Sep 12, 2026</td>
-                                <td>
-                                    <span className="badge px-2.5 py-1 rounded-pill" style={{ fontSize: "11px", backgroundColor: "#dcfce7", color: "#166534" }}>
-                                        Matched
-                                    </span>
-                                </td>
-                                <td className="text-end px-4">
-                                    <div className="d-flex align-items-center justify-content-end gap-2">
-                                        <button className="btn btn-sm text-white px-3 py-1 fw-semibold shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "12px", borderRadius: "4px" }}>View</button>
-                                        <button className="btn btn-sm btn-light border text-dark px-3 py-1 fw-semibold shadow-none" style={{ fontSize: "12px", borderRadius: "4px" }}>Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            {/* Row 3 */}
-                            <tr className="border-bottom">
-                                <td className="py-3 px-4">
-                                    <div className="d-flex align-items-center gap-3">
-                                        <div className="bg-secondary rounded text-white d-flex align-items-center justify-content-center" style={{ width: "38px", height: "38px", background: "url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=100&q=80') center/cover no-repeat" }}></div>
-                                        <div className="fw-bold text-dark">Chemistry Textbook</div>
-                                    </div>
-                                </td>
-                                <td className="text-muted fw-medium">LNF-2026-000104</td>
-                                <td><span className="badge bg-danger bg-opacity-10 text-danger px-2 py-1 fw-bold" style={{ fontSize: "10px" }}>LOST</span></td>
-                                <td className="text-dark">Books</td>
-                                <td className="text-muted">Sep 08, 2026</td>
-                                <td>
-                                    <span className="badge px-2.5 py-1 rounded-pill" style={{ fontSize: "11px", backgroundColor: "#dbeafe", color: "#1e40af" }}>
-                                        Verified
-                                    </span>
-                                </td>
-                                <td className="text-end px-4">
-                                    <div className="d-flex align-items-center justify-content-end gap-2">
-                                        <button className="btn btn-sm text-white px-3 py-1 fw-semibold shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "12px", borderRadius: "4px" }}>View</button>
-                                        <button className="btn btn-sm btn-light border text-dark px-3 py-1 fw-semibold shadow-none" style={{ fontSize: "12px", borderRadius: "4px" }}>Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            {/* Row 4 */}
-                            <tr className="border-bottom">
-                                <td className="py-3 px-4">
-                                    <div className="d-flex align-items-center gap-3">
-                                        <div className="bg-secondary rounded text-white d-flex align-items-center justify-content-center" style={{ width: "38px", height: "38px", background: "url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=100&q=80') center/cover no-repeat" }}></div>
-                                        <div className="fw-bold text-dark">Gym Duffel Bag</div>
-                                    </div>
-                                </td>
-                                <td className="text-muted fw-medium">LNF-2026-000098</td>
-                                <td><span className="badge bg-success bg-opacity-10 text-success px-2 py-1 fw-bold" style={{ fontSize: "10px" }}>FOUND</span></td>
-                                <td className="text-dark">Bags</td>
-                                <td className="text-muted">Sep 02, 2026</td>
-                                <td>
-                                    <span className="badge px-2.5 py-1 rounded-pill" style={{ fontSize: "11px", backgroundColor: "#f1f5f9", color: "#475569" }}>
-                                        Closed
-                                    </span>
-                                </td>
-                                <td className="text-end px-4">
-                                    <div className="d-flex align-items-center justify-content-end gap-2">
-                                        <button className="btn btn-sm text-white px-3 py-1 fw-semibold shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "12px", borderRadius: "4px" }}>View</button>
-                                        <button className="btn btn-sm btn-light border text-dark px-3 py-1 fw-semibold shadow-none" style={{ fontSize: "12px", borderRadius: "4px" }}>Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            {/* Row 5 */}
-                            <tr>
-                                <td className="py-3 px-4">
-                                    <div className="d-flex align-items-center gap-3">
-                                        <div className="bg-secondary rounded text-white d-flex align-items-center justify-content-center" style={{ width: "38px", height: "38px", background: "url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=100&q=80') center/cover no-repeat" }}></div>
-                                        <div className="fw-bold text-dark">Sony WH-1000XM4</div>
-                                    </div>
-                                </td>
-                                <td className="text-muted fw-medium">LNF-2026-000072</td>
-                                <td><span className="badge bg-danger bg-opacity-10 text-danger px-2 py-1 fw-bold" style={{ fontSize: "10px" }}>LOST</span></td>
-                                <td className="text-dark">Electronics</td>
-                                <td className="text-muted">Aug 24, 2026</td>
-                                <td>
-                                    <span className="badge px-2.5 py-1 rounded-pill" style={{ fontSize: "11px", backgroundColor: "#fee2e2", color: "#991b1b" }}>
-                                        Cancelled
-                                    </span>
-                                </td>
-                                <td className="text-end px-4">
-                                    <div className="d-flex align-items-center justify-content-end gap-2">
-                                        <button className="btn btn-sm text-white px-3 py-1 fw-semibold shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "12px", borderRadius: "4px" }}>View</button>
-                                        <button className="btn btn-sm btn-light border text-dark px-3 py-1 fw-semibold shadow-none" style={{ fontSize: "12px", borderRadius: "4px" }}>Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {/* BOTTOM BANNER: DATABASE CONCEPT / ADD DETAILS */}
-            <div className="card border shadow-sm bg-white p-3 d-flex flex-row justify-content-between align-items-center" style={{ borderRadius: "8px" }}>
-                <div className="d-flex align-items-center gap-3">
-                    <div className="bg-light border rounded-circle d-flex align-items-center justify-content-center text-secondary" style={{ width: "40px", height: "40px", flexShrink: 0 }}>
-                        <i className="bi bi-search" style={{ fontSize: "14px" }}></i>
-                    </div>
-                    <div>
-                        <div className="fw-bold text-dark" style={{ fontSize: "13px" }}>
-                            No matching active claims found? (Database concept)
+            {/* LOGGING FORM CARD CONTAINER */}
+            <div className={`card border shadow-sm bg-white mb-5 mx-auto ${showSuccessModal ? 'opacity-50' : ''}`} style={{ maxWidth: "960px" }}>
+                
+                {/* STEP 1: ITEM SPECIFIC DETAILS & CORE IDENTIFIERS*/}
+                {currentStep === 1 && (
+                    <>
+                        <div className="p-3 text-white d-flex justify-content-between align-items-center" style={{ backgroundColor: "#1B2A4A", borderTopLeftRadius: "calc(0.375rem - 1px)", borderTopRightRadius: "calc(0.375rem - 1px)" }}>
+                            <div className="d-flex align-items-center gap-3">
+                                <div className="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: "28px", height: "28px", fontSize: "13px" }}>
+                                    1
+                                </div>
+                                <span className="fw-bold" style={{ fontSize: "15px" }}>Item Specific Details & Core Identifiers</span>
+                            </div>
+                            <span className="text-white-50" style={{ fontSize: "12px" }}>Step 1 of 3</span>
                         </div>
-                        <div className="text-muted" style={{ fontSize: "12px" }}>
-                            Reporting secondary markers or adding additional photos drastically boosts automatic verification matching.
+
+                        <div className="p-4">
+                            {/* NEW: Report Type Option (Lost or Found) */}
+                            <div className="mb-4 pb-3 border-bottom">
+                                <label className="form-label fw-bold text-dark mb-2" style={{ fontSize: "12px" }}>
+                                    Report Classification <span className="text-danger">*</span>
+                                </label>
+                                <div className="d-flex gap-3">
+                                    <div 
+                                        onClick={() => setReportType('lost')}
+                                        className={`flex-fill p-3 border rounded text-center cursor-pointer fw-semibold ${reportType === 'lost' ? 'border-danger bg-danger bg-opacity-10 text-danger' : 'border-light bg-light text-muted'}`}
+                                        style={{ fontSize: "13px", transition: "all 0.2s ease" }}
+                                    >
+                                        <i className="bi bi-exclamation-circle me-2"></i> Report as Lost Item
+                                    </div>
+                                    <div 
+                                        onClick={() => setReportType('found')}
+                                        className={`flex-fill p-3 border rounded text-center cursor-pointer fw-semibold ${reportType === 'found' ? 'border-success bg-success bg-opacity-10 text-success' : 'border-light bg-light text-muted'}`}
+                                        style={{ fontSize: "13px", transition: "all 0.2s ease" }}
+                                    >
+                                        <i className="bi bi-check-circle me-2"></i> Report as Found Item
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row g-3 mb-3">
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>
+                                        Item Name / Tag <span className="text-danger">*</span>
+                                    </label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="iPhone 15 Pro Max" style={{ fontSize: "13px" }} />
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>
+                                        Category <span className="text-danger">*</span>
+                                    </label>
+                                    <select className="form-select shadow-none text-dark" style={{ fontSize: "13px" }}>
+                                        <option>Electronics</option>
+                                        <option>Keys</option>
+                                        <option>Bags</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="row g-3 mb-3">
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Brand / Manufacturer</label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="Apple" style={{ fontSize: "13px" }} />
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Model Code</label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="Pro Max 256GB" style={{ fontSize: "13px" }} />
+                                </div>
+                            </div>
+
+                            <div className="row g-3 mb-3">
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Estimated Valuation Range</label>
+                                    <select className="form-select shadow-none text-dark" style={{ fontSize: "13px" }}>
+                                        <option>$1,000 - $1,500</option>
+                                    </select>
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Primary Case Color</label>
+                                    <select className="form-select shadow-none text-dark" style={{ fontSize: "13px" }}>
+                                        <option>Space Black</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Public Item Description</label>
+                                <textarea className="form-control shadow-none text-dark" rows="3" defaultValue="Topographic lockscreen layout, transparent hard shell backing with minor signs of daily wear. Had a 45% charge left." style={{ fontSize: "13px", resize: "none" }}></textarea>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Private Characteristics / Proof of Ownership Details</label>
+                                <textarea className="form-control shadow-none text-dark" rows="2" defaultValue="Unique micro-scratch situated directly below the USB-C charging port." style={{ fontSize: "13px", resize: "none" }}></textarea>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label fw-semibold text-dark mb-1" style={{ fontSize: "12px" }}>Upload Physical Media (Max 5)</label>
+                                <div className="border border-2 border-dashed rounded p-4 text-center bg-light mb-3" style={{ borderColor: "#cbd5e1" }}>
+                                    <div className="text-secondary mb-1"><i className="bi bi-camera fs-3"></i></div>
+                                    <div className="fw-bold text-dark" style={{ fontSize: "13px" }}>Drag & drop files here, or click to browse</div>
+                                </div>
+                            </div>
+
+                            <div className="d-flex justify-content-between align-items-center pt-3 border-top mt-4">
+                                <span className="text-danger fw-semibold" style={{ fontSize: "13px", cursor: "pointer" }}>Cancel and Discard Draft</span>
+                                <button onClick={() => setCurrentStep(2)} className="btn text-white px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "13px", borderRadius: "6px" }}>
+                                    Next: Location & Time <i className="bi bi-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
+                    </>
+                )}
+
+                {/* STEP 2: EXACT LOCATION & PRECISE LOGGING PARAMETERS  */}
+                {currentStep === 2 && (
+                    <>
+                        <div className="p-3 text-white d-flex justify-content-between align-items-center" style={{ backgroundColor: "#1B2A4A", borderTopLeftRadius: "calc(0.375rem - 1px)", borderTopRightRadius: "calc(0.375rem - 1px)" }}>
+                            <div className="d-flex align-items-center gap-3">
+                                <div className="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: "28px", height: "28px", fontSize: "13px" }}>
+                                    2
+                                </div>
+                                <span className="fw-bold" style={{ fontSize: "15px" }}>Exact Location overlap & Precise Logging Parameters</span>
+                            </div>
+                            <span className="text-white-50" style={{ fontSize: "12px" }}>Step 2 of 3</span>
+                        </div>
+
+                        <div className="p-4">
+                            <div className="row g-3 mb-3">
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Date Found <span className="text-danger">*</span></label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="Sep 15, 2026" style={{ fontSize: "13px" }} />
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Estimated Time Found <span className="text-danger">*</span></label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="10:30 AM" style={{ fontSize: "13px" }} />
+                                </div>
+                            </div>
+
+                            <div className="row g-3 mb-3">
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Primary Campus Building <span className="text-danger">*</span></label>
+                                    <select className="form-select shadow-none text-dark" style={{ fontSize: "13px" }}>
+                                        <option>Central Library</option>
+                                    </select>
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Specific Room / Internal Sector <span className="text-danger">*</span></label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="Study Room 3B (2nd Floor)" style={{ fontSize: "13px" }} />
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label fw-semibold text-dark mb-1" style={{ fontSize: "12px" }}>Place Precise Coordinate Pin (Recommended)</label>
+                                <div className="position-relative border rounded overflow-hidden" style={{ height: "180px", backgroundColor: "#e2e8f0" }}>
+                                    <div className="w-100 h-100 d-flex align-items-center justify-content-center text-muted" style={{ background: "url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat" }}>
+                                        <div className="position-absolute" style={{ top: "50%", left: "50%", transform: "translate(-50%, -100%)" }}>
+                                            <i className="bi bi-geo-alt-fill text-danger fs-3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row g-3 mb-3">
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Current Safe Storage Facility <span className="text-danger">*</span></label>
+                                    <select className="form-select shadow-none text-dark" style={{ fontSize: "13px" }}>
+                                        <option>Central Library Reception Desk</option>
+                                    </select>
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Assigned Safe Desk Case ID</label>
+                                    <input type="text" className="form-control shadow-none text-dark" defaultValue="CF-LIB-203" style={{ fontSize: "13px" }} />
+                                </div>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="form-label fw-semibold text-dark" style={{ fontSize: "12px" }}>Dropoff Handover Remarks / Instructions</label>
+                                <textarea className="form-control shadow-none text-dark" rows="2" defaultValue="Deposited safe inside drawer locker 'B' at the receptionist." style={{ fontSize: "13px", resize: "none" }}></textarea>
+                            </div>
+
+                            <div className="d-flex justify-content-between align-items-center pt-3 border-top mt-4">
+                                <button onClick={() => setCurrentStep(1)} className="btn btn-light border text-dark px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ fontSize: "13px", borderRadius: "6px" }}>
+                                    <i className="bi bi-chevron-left"></i> Back: Item Details
+                                </button>
+                                <button onClick={() => setCurrentStep(3)} className="btn text-white px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "13px", borderRadius: "6px" }}>
+                                    Next: Review & Confirm <i className="bi bi-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                )}
+
+                {/* STEP 3: REVIEW AND AUTHENTICATE SUBMISSION*/}
+                {currentStep === 3 && (
+                    <>
+                        <div className="p-3 text-white d-flex justify-content-between align-items-center" style={{ backgroundColor: "#1B2A4A", borderTopLeftRadius: "calc(0.375rem - 1px)", borderTopRightRadius: "calc(0.375rem - 1px)" }}>
+                            <div className="d-flex align-items-center gap-3">
+                                <div className="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: "28px", height: "28px", fontSize: "13px" }}>
+                                    3
+                                </div>
+                                <span className="fw-bold" style={{ fontSize: "15px" }}>Review and Authenticate Submission</span>
+                            </div>
+                            <span className="text-white-50" style={{ fontSize: "12px" }}>Step 3 of 3</span>
+                        </div>
+
+                        <div className="p-4">
+                            {/* Review Box 1 */}
+                            <div className="p-3 border rounded bg-light mb-3">
+                                <div className="text-muted fw-bold mb-1" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>1. ITEM SPECS & DETAILS</div>
+                                <div className="d-flex justify-content-between align-items-center mb-1">
+                                    <div className="fw-bold text-dark" style={{ fontSize: "13px" }}>Item Name</div>
+                                    <span className={`badge ${reportType === 'lost' ? 'bg-danger' : 'bg-success'}`} style={{ fontSize: "10px" }}>
+                                        {reportType === 'lost' ? 'LOST ITEM' : 'FOUND ITEM'}
+                                    </span>
+                                </div>
+                                <div className="text-dark mb-2" style={{ fontSize: "13px" }}>iPhone 15 Pro Max</div>
+                            </div>
+
+                            {/* Review Box 2 */}
+                            <div className="p-3 border rounded bg-light mb-3">
+                                <div className="text-muted fw-bold mb-1" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>2. LOCATION COORDINATES & STORAGE</div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="fw-bold text-dark" style={{ fontSize: "13px" }}>Campus Building</div>
+                                        <div className="text-dark" style={{ fontSize: "13px" }}>Central Library</div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="fw-bold text-dark" style={{ fontSize: "13px" }}>Safe Storage Facility</div>
+                                        <div className="text-dark" style={{ fontSize: "13px" }}>Central Library Reception Desk</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Honor Code Checkbox */}
+                            <div className="form-check mb-4">
+                                <input className="form-check-input shadow-none" type="checkbox" defaultChecked id="honorCodeCheck" />
+                                <label className="form-check-label text-dark" htmlFor="honorCodeCheck" style={{ fontSize: "13px" }}>
+                                    <strong>University Honor Code Authentication:</strong> I formally acknowledge that all logged details are accurate and matches will be reported directly to University Security if flagged.
+                                </label>
+                            </div>
+
+                            <div className="d-flex justify-content-between align-items-center pt-3 border-top mt-4">
+                                <button onClick={() => setCurrentStep(2)} className="btn btn-light border text-dark px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-none" style={{ fontSize: "13px", borderRadius: "6px" }}>
+                                    <i className="bi bi-chevron-left"></i> Back: Edit Location
+                                </button>
+                                <button 
+                                    onClick={() => setShowSuccessModal(true)} 
+                                    className="btn text-white px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-none" 
+                                    style={{ backgroundColor: "#198754", fontSize: "13px", borderRadius: "6px" }}
+                                >
+                                    Confirm and Submit Report <i className="bi bi-check-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                )}
+
+            </div>
+
+
+            {/* SUCCESS MODAL POPUP OVERLAY*/}
+        
+            {showSuccessModal && (
+                <div className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 1050 }}>
+                    <div className="bg-white rounded p-4 text-center shadow-lg position-relative" style={{ width: "480px", maxWidth: "90%" }}>
+                        
+                        {/* Checkmark Icon Circle */}
+                        <div className="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: "64px", height: "64px" }}>
+                            <i className="bi bi-check-lg fs-2"></i>
+                        </div>
+
+                        <h4 className="fw-bold text-dark mb-1" style={{ fontSize: "20px" }}>Report Submitted Successfully!</h4>
+                        <p className="text-muted mb-4" style={{ fontSize: "13px" }}>
+                            Your report has been logged and verified on the smart retrieval grid network.
+                        </p>
+
+                        {/* Reference Case ID Box */}
+                        <div className="bg-light border rounded p-3 mb-4">
+                            <div className="text-muted mb-1" style={{ fontSize: "11px", fontWeight: "600", letterSpacing: "0.5px" }}>REFERENCE CASE ID</div>
+                            <div className="fw-bold text-dark" style={{ fontSize: "16px", letterSpacing: "1px" }}>LNF-2026-000125</div>
+                        </div>
+
+                        {/* Modal Action Buttons */}
+                        <div className="d-flex flex-column gap-2">
+                            <button 
+                                onClick={() => alert("Redirecting to My Live Reports...")}
+                                className="btn text-white py-2 fw-semibold shadow-none" 
+                                style={{ backgroundColor: "#1B2A4A", fontSize: "13px", borderRadius: "6px" }}
+                            >
+                                View My Live Reports
+                            </button>
+                            <button 
+                                onClick={() => {
+                                    setShowSuccessModal(false);
+                                    setCurrentStep(1);
+                                }}
+                                className="btn btn-link text-decoration-none text-muted p-1" 
+                                style={{ fontSize: "13px" }}
+                            >
+                                Report another campus item
+                            </button>
+                        </div>
+
                     </div>
                 </div>
-                <button className="btn text-white px-4 py-2 fw-semibold shadow-none" style={{ backgroundColor: "#1B2A4A", fontSize: "13px", borderRadius: "6px", flexShrink: 0 }}>
-                    Add Details
-                </button>
-            </div>
+            )}
 
         </div>
     );

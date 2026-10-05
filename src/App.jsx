@@ -14,10 +14,14 @@ import Profile from "./pages/student/Profile";
 
 import StaffLayout from "./layouts/StaffLayout";
 import StaffDashboard from "./pages/staff/StaffDashboard";
+import PendingReports from "./pages/staff/PendingReports";
+import Claims from "./pages/staff/Claims";
+import StaffMessages from "./pages/staff/StaffMessages";
 
 function App() {
     return (
-        <BrowserRouter basename="/campus-find">
+        // <BrowserRouter basename="/campus-find"> (back in online)
+        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
@@ -36,8 +40,10 @@ function App() {
 
                 {/* STAFF AREA */}
                 <Route element={<StaffLayout />}>
-                    <Route path="/staff/dashboard" element={<StaffDashboard />}/>
-              
+                    <Route path="/staff/dashboard" element={<StaffDashboard />} />
+                    <Route path="/staff/reports" element={<PendingReports />} />
+                    <Route path="/staff/claims" element={<Claims />} />
+                    <Route path="/staff/messages" element={<StaffMessages />} />
                 </Route>
 
             </Routes>
