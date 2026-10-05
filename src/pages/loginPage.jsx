@@ -55,7 +55,7 @@ function LoginPage() {
 
                 <div className="mt-4">
                     <Link
-                        to="/student/dashboard"
+                        to="/dashboard"
                         className="btn w-100 mb-3 text-center d-block"
                         style={{ backgroundColor: "#1B2A4A", color: "#FFFFFF", textDecoration: "none" }}
                     >
