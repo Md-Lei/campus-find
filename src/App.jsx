@@ -20,8 +20,7 @@ import StaffMessages from "./pages/staff/StaffMessages";
 
 function App() {
     return (
-        // <BrowserRouter basename="/campus-find"> (back in online)
-        <BrowserRouter>
+        <BrowserRouter basename="/campus-find">
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
