@@ -1,7 +1,9 @@
 import loginLogo from "../assets/loginLogo.png";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
 
 function LoginPage() {
+    const navigate = useNavigate();
+
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-white">
             <div className="container shadow-lg p-4 rounded bg-white" style={{ maxWidth: "400px" }}>
@@ -34,24 +36,23 @@ function LoginPage() {
                     <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="secretpassword" />
                 </div>
 
-                {/* Sign In Button & Register */}
-                <div className="mt-4" >
-                    {/* <button type="button" className="btn w-100 mb-3" style={{
-                        backgroundColor: "#1B2A4A",
-                        color: "#FFFFFF"
-                    }}>Sign In</button> */}
+                {/* Actions */}
+                <div className="mt-4">
                     <button
                         type="button"
                         className="btn w-100 mb-3"
                         style={{ backgroundColor: "#1B2A4A", color: "#FFFFFF" }}
-                        onClick={() => window.location.href = '/student/dashboard'}
+                        onClick={() => navigate('/student/dashboard')}
                     >
                         Sign In
                     </button>
 
-                    {/* Register */}
-                    <p className="text-center text-muted mb-0" style={{ fontSize: "13px", }}>Don't have an account?  <Link to="/register" className="fw-semibold" style={{ textDecoration: "none" }}>Register Here</Link></p>
+                    {/* Register link */}
+                    <p className="text-center text-muted mb-0" style={{ fontSize: "13px" }}>
+                        Don't have an account? <Link to="/register" className="fw-semibold" style={{ color: "#1B2A4A", textDecoration: "none" }}>Register Here</Link>
+                    </p>
                 </div>
+
             </div>
         </div>
     );
